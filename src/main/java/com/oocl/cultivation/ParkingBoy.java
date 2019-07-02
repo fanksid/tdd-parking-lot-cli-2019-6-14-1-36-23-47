@@ -1,5 +1,7 @@
 package com.oocl.cultivation;
 
+import java.util.Objects;
+
 public class ParkingBoy {
 
     private final ParkingLot parkingLot;
@@ -10,12 +12,27 @@ public class ParkingBoy {
     }
 
     public ParkingTicket park(Car car) {
-        return parkingLot.park(car);
+        ParkingTicket ticket = parkingLot.park(car);
+        resetErrorMsg(ticket);
+        return ticket;
+    }
+
+    private void resetErrorMsg(ParkingTicket ticket) {
+        if (Objects.nonNull(ticket)) {
+            lastErrorMessage = null;
+        }
     }
 
     public Car fetch(ParkingTicket ticket) {
-        // TODO: Please implement the method
-        return parkingLot.pick(ticket);
+        Car car = parkingLot.pick(ticket);
+        arrangeErrorMsg(car);
+        return car;
+    }
+
+    private void arrangeErrorMsg(Car car) {
+        if (Objects.isNull(car)) {
+            lastErrorMessage = "Unrecognized parking ticket.";
+        }
     }
 
     public String getLastErrorMessage() {

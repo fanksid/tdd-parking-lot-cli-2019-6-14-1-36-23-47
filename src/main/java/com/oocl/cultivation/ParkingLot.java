@@ -26,6 +26,6 @@ public class ParkingLot {
     }
 
     Car pick(ParkingTicket ticket) {
-        return cars.get(ticket);
+        return cars.remove(ticket);
     }
 }
