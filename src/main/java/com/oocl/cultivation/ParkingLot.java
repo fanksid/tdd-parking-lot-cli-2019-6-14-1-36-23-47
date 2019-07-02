@@ -18,4 +18,14 @@ public class ParkingLot {
     public int getAvailableParkingPosition() {
         return cars.size() - capacity;
     }
+
+    ParkingTicket park(Car car) {
+        ParkingTicket ticket = new ParkingTicket();
+        cars.put(ticket, car);
+        return ticket;
+    }
+
+    Car pick(ParkingTicket ticket) {
+        return cars.get(ticket);
+    }
 }
