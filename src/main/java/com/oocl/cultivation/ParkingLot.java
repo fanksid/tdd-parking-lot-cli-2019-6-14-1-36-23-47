@@ -20,6 +20,9 @@ public class ParkingLot {
     }
 
     ParkingTicket park(Car car) {
+        if (cars.size() == capacity) {
+            return null;
+        }
         ParkingTicket ticket = new ParkingTicket();
         cars.put(ticket, car);
         return ticket;

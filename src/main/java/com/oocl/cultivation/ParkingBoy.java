@@ -20,10 +20,16 @@ public class ParkingBoy {
     private void resetErrorMsg(ParkingTicket ticket) {
         if (Objects.nonNull(ticket)) {
             lastErrorMessage = null;
+        } else {
+            lastErrorMessage = "The parking lot is full.";
         }
     }
 
     public Car fetch(ParkingTicket ticket) {
+        if (Objects.isNull(ticket)) {
+            lastErrorMessage = "Please provide your parking ticket.";
+            return null;
+        }
         Car car = parkingLot.pick(ticket);
         arrangeErrorMsg(car);
         return car;
