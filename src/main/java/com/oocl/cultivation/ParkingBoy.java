@@ -25,7 +25,7 @@ public class ParkingBoy {
         }
 
         ParkingTicket ticket = parkFromParkingLots(car);
-        resetErrorMsg(ticket);
+        resetErrorMsgByParkingTicket(ticket);
         return ticket;
     }
 
@@ -39,7 +39,7 @@ public class ParkingBoy {
         return null;
     }
 
-    private void resetErrorMsg(ParkingTicket ticket) {
+    private void resetErrorMsgByParkingTicket(ParkingTicket ticket) {
         if (Objects.nonNull(ticket)) {
             lastErrorMessage = null;
         } else {
