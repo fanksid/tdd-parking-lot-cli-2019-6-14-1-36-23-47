@@ -1,6 +1,6 @@
 package com.oocl.cultivation;
 
-import java.util.ArrayList;
+import com.google.common.collect.Lists;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,9 +10,7 @@ public class ParkingBoy extends ParkFetchBaseBehavior {
     private String lastErrorMessage;
 
     public ParkingBoy(ParkingLot parkingLot) {
-        this.parkingLots = new ArrayList<ParkingLot>() {{
-            add(parkingLot);
-        }};
+        this.parkingLots = Lists.newArrayList(parkingLot);
     }
 
     public ParkingBoy(List<ParkingLot> parkingLots) {
