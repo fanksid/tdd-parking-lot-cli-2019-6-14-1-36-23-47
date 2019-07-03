@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class ParkingBoy {
 
-    private final List<ParkingLot> parkingLots;
+    final List<ParkingLot> parkingLots;
     private String lastErrorMessage;
 
     public ParkingBoy(ParkingLot parkingLot) {
@@ -29,7 +29,7 @@ public class ParkingBoy {
         return ticket;
     }
 
-    private ParkingTicket parkFromParkingLots(Car car) {
+    ParkingTicket parkFromParkingLots(Car car) {
         for (ParkingLot parkingLot : parkingLots) {
             ParkingTicket ticket = parkingLot.park(car);
             if (Objects.nonNull(ticket)) {

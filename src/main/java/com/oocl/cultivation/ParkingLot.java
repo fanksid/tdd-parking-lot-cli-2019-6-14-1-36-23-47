@@ -16,11 +16,11 @@ public class ParkingLot {
     }
 
     public int getAvailableParkingPosition() {
-        return cars.size() - capacity;
+        return capacity - cars.size();
     }
 
     public ParkingTicket park(Car car) {
-        if (getAvailableParkingPosition() > 0) {
+        if (getAvailableParkingPosition() == 0) {
             return null;
         }
         ParkingTicket ticket = new ParkingTicket();
