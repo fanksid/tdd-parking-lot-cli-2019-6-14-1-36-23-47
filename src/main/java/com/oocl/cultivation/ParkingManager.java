@@ -31,8 +31,14 @@ public class ParkingManager {
             }
         }
 
-        System.out.println(parkingBoys.stream().map(ParkingBoy::getLastErrorMessage).collect(Collectors.joining()));
+        System.out.println(getParkingBoysErrorMsg());
         return null;
+    }
+
+    private String getParkingBoysErrorMsg() {
+        return parkingBoys.stream()
+                .map(ParkingBoy::getLastErrorMessage)
+                .collect(Collectors.joining());
     }
 
     public Car fetchByBoy(ParkingTicket ticket) {
@@ -42,7 +48,7 @@ public class ParkingManager {
                 return car;
             }
         }
-        System.out.println(parkingBoys.stream().map(ParkingBoy::getLastErrorMessage).collect(Collectors.joining()));
+        System.out.println(getParkingBoysErrorMsg());
         return null;
     }
 
