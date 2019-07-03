@@ -30,11 +30,11 @@ public class ParkingLot {
         return ticket;
     }
 
-    public Car pick(ParkingTicket ticket) {
+    Car pick(ParkingTicket ticket) {
         return cars.remove(ticket);
     }
 
-    public int getCapacity() {
+    int getCapacity() {
         return capacity;
     }
 }
