@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class ParkingManager {
+public class ParkingManager extends ParkFetchBaseBehavior {
     private final List<ParkingLot> parkingLots;
 
     private final List<ParkingBoy> parkingBoys;
@@ -53,22 +53,15 @@ public class ParkingManager {
     }
 
     public ParkingTicket park(Car car) {
-        for (ParkingLot parkingLot : parkingLots) {
-            ParkingTicket ticket = parkingLot.park(car);
-            if (Objects.nonNull(ticket)) {
-                return ticket;
-            }
-        }
-        return null;
+        return super.parkFromParkingLots(car);
     }
 
     public Car fetch(ParkingTicket ticket) {
-        for (ParkingLot parkingLot : parkingLots) {
-            Car car = parkingLot.pick(ticket);
-            if (Objects.nonNull(car)) {
-                return car;
-            }
-        }
-        return null;
+        return super.pickCarFromParkingLots(ticket);
+    }
+
+    @Override
+    List<ParkingLot> getParkingLots() {
+        return parkingLots;
     }
 }

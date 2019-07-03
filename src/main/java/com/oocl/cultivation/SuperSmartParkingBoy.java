@@ -14,7 +14,7 @@ public class SuperSmartParkingBoy extends ParkingBoy {
     }
 
     @Override
-    ParkingTicket parkFromParkingLots(Car car) {
+    public ParkingTicket parkFromParkingLots(Car car) {
         Optional<ParkingLot> lotOptional = parkingLots
                 .stream().max(Comparator.comparingDouble(p -> 1.0 * p.getAvailableParkingPosition() / p.getCapacity()));
 

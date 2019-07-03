@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ParkingBoy {
+public class ParkingBoy extends ParkFetchBaseBehavior {
 
     final List<ParkingLot> parkingLots;
     private String lastErrorMessage;
@@ -29,16 +29,6 @@ public class ParkingBoy {
         return ticket;
     }
 
-    ParkingTicket parkFromParkingLots(Car car) {
-        for (ParkingLot parkingLot : parkingLots) {
-            ParkingTicket ticket = parkingLot.park(car);
-            if (Objects.nonNull(ticket)) {
-                return ticket;
-            }
-        }
-        return null;
-    }
-
     private void resetErrorMsgByParkingTicket(ParkingTicket ticket) {
         if (Objects.nonNull(ticket)) {
             lastErrorMessage = null;
@@ -57,14 +47,9 @@ public class ParkingBoy {
         return car;
     }
 
-    private Car pickCarFromParkingLots(ParkingTicket ticket) {
-        for (ParkingLot parkingLot : parkingLots) {
-            Car car = parkingLot.pick(ticket);
-            if (Objects.nonNull(car)) {
-                return car;
-            }
-        }
-        return null;
+    @Override
+    List<ParkingLot> getParkingLots() {
+        return parkingLots;
     }
 
     private void setInvalidTicketMsg(Car car) {
