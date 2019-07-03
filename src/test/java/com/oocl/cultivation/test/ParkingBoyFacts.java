@@ -4,6 +4,7 @@ import com.oocl.cultivation.Car;
 import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.ParkingLot;
 import com.oocl.cultivation.ParkingTicket;
+import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -162,5 +163,22 @@ class ParkingBoyFacts {
         ParkingTicket ticket = parkingBoy.park(null);
 
         assertNull(ticket);
+    }
+
+    @Test
+    void should_park_to_second_lot_when_first_is_full() {
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingLot parkingLotTwo = new ParkingLot(1);
+        ArrayList<ParkingLot> lots = new ArrayList<>();
+        lots.add(parkingLot);
+        lots.add(parkingLotTwo);
+        ParkingBoy parkingBoy = new ParkingBoy(lots);
+        parkingLot.park(new Car());
+
+        Car car = new Car();
+        ParkingTicket ticket = parkingBoy.park(car);
+
+        assertNotNull(ticket);
+        assertSame(car, parkingBoy.fetch(ticket));
     }
 }
