@@ -53,7 +53,7 @@ public class ParkingBoy {
             return null;
         }
         Car car = pickCarFromParkingLots(ticket);
-        arrangeErrorMsg(car);
+        setInvalidTicketMsg(car);
         return car;
     }
 
@@ -67,7 +67,7 @@ public class ParkingBoy {
         return null;
     }
 
-    private void arrangeErrorMsg(Car car) {
+    private void setInvalidTicketMsg(Car car) {
         if (Objects.isNull(car)) {
             lastErrorMessage = "Unrecognized parking ticket.";
         }
