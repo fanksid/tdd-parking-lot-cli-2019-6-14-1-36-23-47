@@ -31,4 +31,8 @@ public class ParkingLot {
     public Car pick(ParkingTicket ticket) {
         return cars.remove(ticket);
     }
+
+    public int getCapacity() {
+        return capacity;
+    }
 }
