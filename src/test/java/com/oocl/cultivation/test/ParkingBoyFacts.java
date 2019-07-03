@@ -5,8 +5,10 @@ import com.oocl.cultivation.ParkingBoy;
 import com.oocl.cultivation.ParkingLot;
 import com.oocl.cultivation.ParkingTicket;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 class ParkingBoyFacts {
     @Test
@@ -97,8 +99,8 @@ class ParkingBoyFacts {
         parkingBoy.fetch(null);
 
         assertEquals(
-            "Please provide your parking ticket.",
-            parkingBoy.getLastErrorMessage());
+                "Please provide your parking ticket.",
+                parkingBoy.getLastErrorMessage());
     }
 
     @Test
@@ -124,8 +126,8 @@ class ParkingBoyFacts {
         parkingBoy.fetch(ticket);
 
         assertEquals(
-            "Unrecognized parking ticket.",
-            parkingBoy.getLastErrorMessage()
+                "Unrecognized parking ticket.",
+                parkingBoy.getLastErrorMessage()
         );
     }
 
@@ -150,5 +152,15 @@ class ParkingBoyFacts {
         parkingBoy.park(new Car());
 
         assertEquals("The parking lot is full.", parkingBoy.getLastErrorMessage());
+    }
+
+    @Test
+    void should_return_null_ticket_when_car_is_invalid() {
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+
+        ParkingTicket ticket = parkingBoy.park(null);
+
+        assertNull(ticket);
     }
 }

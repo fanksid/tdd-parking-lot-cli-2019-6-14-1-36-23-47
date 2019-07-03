@@ -12,6 +12,10 @@ public class ParkingBoy {
     }
 
     public ParkingTicket park(Car car) {
+        if (Objects.isNull(car)) {
+            return null;
+        }
+
         ParkingTicket ticket = parkingLot.park(car);
         resetErrorMsg(ticket);
         return ticket;
